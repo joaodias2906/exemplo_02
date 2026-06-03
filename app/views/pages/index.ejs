@@ -7,12 +7,26 @@
 </head>
 <body>
 
+         <%
+    let  erroValidacao =  {"dia":""};
+    let  msgErro =  {"dia":""};
+    if(erros) {
+         erros.errors.forEach(function(erro) {
+             if (erro.path == "dia") {
+                erroValidacao.dia = "erro",
+                msgErro.dia = erro.msg
+             }
+
+         })
+     }; %>
+
+
     <h1>Classificação de Nadadores</h1>
     
-    <form action="/semana" method="post">
-        <label for="semana">Digite o dia da semana:</label> <br>
-        <input type="text" name="semana" id="semana" value="<%= valores.semana %>"> <br>
-        <button type="submit">classificar</button>
+     <form method="post" action="/index">
+        <label for="dia">Digiti do dia da Semana:</label>
+        <input type="text" name="dia" id="dia" value="<%= valores.dia %>"class="<%= erroValidacao.dia %>">
+        <span><%= msgErro.dia %></span> <br>
      </form>
 
     <% 
